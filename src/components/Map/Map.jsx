@@ -1,14 +1,19 @@
-import React, { Component } from "react";
-import OlMap from "ol/map";
-import OlView from "ol/view";
-import OlLayerTile from "ol/layer/tile";
-import OlSourceOSM from "ol/source/osm";
+import React from "react";
+import OlMap from "ol/Map";
+import OlView from "ol/View";
+import OlLayerTile from "ol/layer/Tile";
+import OlSourceOSM from "ol/source/OSM";
+
+import styles from './Map.module.css';
 
 class PublicMap extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { center: [0, 0], zoom: 1 };
+    this.state = {
+      center: [5232213, 5991003],
+      zoom: 8
+    };
 
     this.olmap = new OlMap({
       target: null,
@@ -42,19 +47,18 @@ class PublicMap extends React.Component {
   shouldComponentUpdate(nextProps, nextState) {
     let center = this.olmap.getView().getCenter();
     let zoom = this.olmap.getView().getZoom();
-    if (center === nextState.center && zoom === nextState.zoom) return false;
+    if (center === nextState.center && zoom === nextState.zoom) {
+      return false
+    };
+    localStorage.setItem('center', center);
+    localStorage.setItem('zoom', zoom);
     return true;
-  }
-
-  userAction() {
-    this.setState({ center: [546000, 6868000], zoom: 5 });
   }
 
   render() {
     this.updateMap();
     return (
-      <div id="map" style={{ width: "100%", height: "360px" }}>
-        <button onClick={e => this.userAction()}>setState on click</button>
+      <div id="map" className={styles.map}>
       </div>
     );
   }
