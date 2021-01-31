@@ -17,3 +17,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+:root {
+  --light-blue-semitransparent-background-color: rgba(242, 251, 255, 0.856);
+  --dark-blue-background-color: #0d2a3d;
+  --dark-blue-on-hover: #35759c;
+  --shadow-color: rgb(80, 104, 117);
+}
