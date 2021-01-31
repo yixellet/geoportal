@@ -1,0 +1,19 @@
+.map {
+  width: 100vw;
+  height: 100vh;
+}
+
+.ol-map {
+  min-width: 600px;
+  min-height: 500px;
+  margin: 50px;
+  height: 500px;
+  width: 100%;
+}
+.ol-control {
+  display: none;
+}
+.ol-full-screen {
+  top: .5em;
+  right: .5em;
+}
