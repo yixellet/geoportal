@@ -25,10 +25,11 @@ class PublicMap extends React.Component {
     });
     this.mapContainer = React.createRef();
     this.parser = new WMSCapabilities();
-    this.handleSetLayerVisible = this.handleSetLayerVisible.bind(this);
+    this.handleSetLayerVisible = this.handleSetLayerVisible.bind(this)
   }
 
   componentDidMount() {
+    const {visibleLayers } = this.state;
     this.map.setTarget(this.mapContainer.current);
     this.props.api.getWMSCapabilities()
       .then((text) => {
@@ -40,20 +41,16 @@ class PublicMap extends React.Component {
         const tempLayerList = [];
         layerList.forEach((layer) => {
           const newWMSLayer = this.props.WMSLayer.getWMSLayer(layer.Name);
-          tempLayerList.push({name: layer.Name, layer: newWMSLayer})
+          tempLayerList.push(newWMSLayer)
         });
         this.setState({
-          readyForAddingToMapLayers: tempLayerList
+          visibleLayers: visibleLayers.push(tempLayerList)
         })
       })
   }
 
   handleSetLayerVisible(layerName) {
-    console.log(this.state.readyForAddingToMapLayers)
-    const layerForShowing = this.state.readyForAddingToMapLayers.find((layer) => {
-      return layer.name === layerName;
-    })
-    this.map.addLayer(layerForShowing.layer)
+    console.log(layerName)
   }
 
   render() {

@@ -4,6 +4,7 @@ import ImageWMS from 'ol/source/ImageWMS';
 class WMSLayer {
   constructor(baseUrl) {
     this.baseUrl = baseUrl;
+    this.visibility = true;
   }
 
   getWMSLayer(layerName) {
@@ -13,9 +14,14 @@ class WMSLayer {
         params: {'LAYERS': layerName},
         ratio: 1,
         serverType: 'qgis'
-      })
+      }),
+      visible: this.visibility,
     });
     return layer;
+  }
+
+  setLayerVisibility() {
+    this.visibility = !this.visibility
   }
 }
 

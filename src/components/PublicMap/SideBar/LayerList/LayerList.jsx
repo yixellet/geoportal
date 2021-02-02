@@ -1,4 +1,5 @@
 import React from "react";
+import LayerLegendItem from './LayerLegendItem/LayerLegendItem';
 
 import styles from './LayerList.module.css';
 
@@ -11,8 +12,7 @@ class LayerList extends React.Component {
           {
             this.props.layers.map((layer, index) => {
               return <li key={index}>
-                  <input onClick={() => this.props.onCheckboxClick(layer.Name)} type="checkbox" id={layer.Name} name={layer.Name} />
-                  <label htmlFor={layer.Name}>{layer.Title}</label>
+                  <LayerLegendItem name={layer.Name} title={layer.Title} onCheckboxClick={this.props.onCheckboxClick} />
                 </li>
             })
           }
